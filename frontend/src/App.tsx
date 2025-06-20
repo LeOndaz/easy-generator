@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom';
 import { Layout } from 'antd';
 import SignUpPage from './pages/SignUpPage';
 import SignInPage from './pages/SignInPage';
@@ -15,11 +20,11 @@ function App() {
           <Routes>
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/signin" element={<SignInPage />} />
-            
+
             <Route element={<ProtectedRoute />}>
               <Route path="/welcome" element={<WelcomePage />} />
             </Route>
-            
+
             <Route path="/" element={<Navigate to="/welcome" replace />} />
           </Routes>
         </Content>

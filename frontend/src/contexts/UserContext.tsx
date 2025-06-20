@@ -1,5 +1,5 @@
-import { createContext, type ReactNode, useState } from "react";
-import { type User } from "../api/api";
+import { createContext, type ReactNode, useState } from 'react';
+import { type User } from '../api/api';
 
 interface UserContextType {
   user: User | null;
@@ -19,7 +19,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
 
   return (
-    <UserContext.Provider value={{ user, setUser }} >
+    <UserContext.Provider value={{ user, setUser }}>
       {children}
     </UserContext.Provider>
   );

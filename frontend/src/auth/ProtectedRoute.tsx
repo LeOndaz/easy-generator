@@ -34,7 +34,7 @@ const ProtectedRoute = () => {
       setIsLoading(false);
       return;
     }
-    
+
     const accessToken = localStorage.getItem('accessToken');
     if (!accessToken) {
       logout();
@@ -42,32 +42,42 @@ const ProtectedRoute = () => {
       return;
     }
 
-    refetchUser()
-      .then((queryResult) => {
-        if (queryResult.isSuccess && queryResult.data) {
-          setUser(queryResult.data as User);
-          setIsLoading(false);
+    refetchUser().then((queryResult) => {
+      if (queryResult.isSuccess && queryResult.data) {
+        setUser(queryResult.data as User);
+        setIsLoading(false);
+        return;
+      }
+
+      if (queryResult.isError) {
+        const storedRefreshToken = localStorage.getItem('refreshToken');
+        if (storedRefreshToken) {
+          doRefreshToken({ data: { refreshToken: storedRefreshToken } });
           return;
         }
-        
-        if (queryResult.isError) {
-          const storedRefreshToken = localStorage.getItem('refreshToken');
-          if (storedRefreshToken) {
-            doRefreshToken({ data: { refreshToken: storedRefreshToken } });
-            return;
-          }
-          
-          logout();
-          setIsLoading(false);
-        }
-      });
+
+        logout();
+        setIsLoading(false);
+      }
+    });
   }, []);
 
   if (isLoading) {
-    return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}><Spin size="large" /></div>;
+    return (
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+        }}
+      >
+        <Spin size="large" />
+      </div>
+    );
   }
 
   return user ? <Outlet /> : <Navigate to="/signin" replace />;
 };
 
-export default ProtectedRoute; 
+export default ProtectedRoute;

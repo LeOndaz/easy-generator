@@ -10,7 +10,14 @@ const WelcomePage = () => {
   const logout = useLogout();
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '80vh' }}>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: '80vh',
+      }}
+    >
       <Card style={{ width: 400, textAlign: 'center' }}>
         <Space direction="vertical" size="large">
           <Title level={2}>Welcome, {user?.username || 'User'}!</Title>
@@ -24,4 +31,4 @@ const WelcomePage = () => {
   );
 };
 
-export default WelcomePage; 
+export default WelcomePage;

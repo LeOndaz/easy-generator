@@ -16,7 +16,14 @@ const SignInPage = () => {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '80vh' }}>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: '80vh',
+      }}
+    >
       <Card title="Sign In" style={{ width: 400 }}>
         <Form
           name="signin"
@@ -27,7 +34,10 @@ const SignInPage = () => {
           <Form.Item
             name="email"
             label="Email"
-            rules={[{ required: true, message: 'Please input your email!' }, { type: 'email', message: 'Please enter a valid email!' }]}
+            rules={[
+              { required: true, message: 'Please input your email!' },
+              { type: 'email', message: 'Please enter a valid email!' },
+            ]}
           >
             <Input />
           </Form.Item>
