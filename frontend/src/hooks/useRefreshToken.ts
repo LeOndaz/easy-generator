@@ -1,5 +1,5 @@
 import {
-  useAuthControllerRefreshV1,
+  useAuthControllerRefreshTokenV1,
   type RefreshTokenResponseDto,
   type RefreshTokenDto,
 } from '../api/api';
@@ -11,7 +11,7 @@ type Options = Omit<
 >;
 
 export const useRefreshToken = (options?: Options) => {
-  return useAuthControllerRefreshV1({
+  return useAuthControllerRefreshTokenV1({
     mutation: {
       ...options,
       onSuccess: (data, ...rest) => {

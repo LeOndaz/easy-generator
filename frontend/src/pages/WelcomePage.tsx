@@ -20,7 +20,7 @@ const WelcomePage = () => {
     >
       <Card style={{ width: 400, textAlign: 'center' }}>
         <Space direction="vertical" size="large">
-          <Title level={2}>Welcome, {user?.username || 'User'}!</Title>
+          <Title level={2}>Welcome, {user?.email || 'User'}!</Title>
           <Text>You have successfully signed in.</Text>
           <Button type="primary" onClick={logout} block>
             Sign Out

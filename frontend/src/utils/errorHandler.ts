@@ -1,11 +1,6 @@
 import { notification } from 'antd';
 import { type ApiError } from './client';
 
-// This is the shape of the data property inside an ApiError
-interface BackendErrorPayload {
-  code?: string;
-  message: string | string[];
-}
 
 const capitalize = (s: string) =>
   s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();

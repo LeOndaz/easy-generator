@@ -1,5 +1,3 @@
-import { notification } from 'antd';
-
 type RequestConfig = {
   url: string;
   method: string;
