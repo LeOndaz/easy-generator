@@ -5,7 +5,10 @@
  * The EasyGenerator Task API description
  * OpenAPI spec version: 1.0
  */
-import { useMutation, useQuery } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQuery
+} from '@tanstack/react-query';
 import type {
   DataTag,
   DefinedInitialDataOptions,
@@ -18,20 +21,13 @@ import type {
   UseMutationOptions,
   UseMutationResult,
   UseQueryOptions,
-  UseQueryResult,
+  UseQueryResult
 } from '@tanstack/react-query';
 
 import { customInstance } from '../utils/client';
-export interface SignUpDto {
-  /** The desired username for the new user */
-  username: string;
-  /** The password for the new user */
-  password: string;
-}
-
 export interface User {
-  /** The user's unique username */
-  username: string;
+  /** The user's unique email */
+  email: string;
   /** The user's password */
   password: string;
   createdAt: string;
@@ -47,553 +43,237 @@ export interface SignInResponseDto {
   user: User;
 }
 
-export interface SignInDto {
-  /** The username of the user */
-  username: string;
-  /** The password of the user */
-  password: string;
-}
-
-export interface RefreshTokenDto {
-  /** The user's refresh token */
-  refreshToken: string;
-}
-
 export interface RefreshTokenResponseDto {
   /** A new JWT access token */
   accessToken: string;
 }
 
-export const appControllerHealthCheckV1 = (signal?: AbortSignal) => {
-  return customInstance<void>({ url: `/api/v1`, method: 'GET', signal });
-};
+export const appControllerHealthCheckV1 = (
+    
+ signal?: AbortSignal
+) => {
+      
+      
+      return customInstance<void>(
+      {url: `/api/v1`, method: 'GET', signal
+    },
+      );
+    }
+  
 
 export const getAppControllerHealthCheckV1QueryKey = () => {
-  return [`/api/v1`] as const;
-};
+    return [`/api/v1`] as const;
+    }
 
-export const getAppControllerHealthCheckV1QueryOptions = <
-  TData = Awaited<ReturnType<typeof appControllerHealthCheckV1>>,
-  TError = unknown,
->(options?: {
-  query?: Partial<
-    UseQueryOptions<
-      Awaited<ReturnType<typeof appControllerHealthCheckV1>>,
-      TError,
-      TData
-    >
-  >;
-}) => {
-  const { query: queryOptions } = options ?? {};
+    
+export const getAppControllerHealthCheckV1QueryOptions = <TData = Awaited<ReturnType<typeof appControllerHealthCheckV1>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof appControllerHealthCheckV1>>, TError, TData>>, }
+) => {
 
-  const queryKey =
-    queryOptions?.queryKey ?? getAppControllerHealthCheckV1QueryKey();
+const {query: queryOptions} = options ?? {};
 
-  const queryFn: QueryFunction<
-    Awaited<ReturnType<typeof appControllerHealthCheckV1>>
-  > = ({ signal }) => appControllerHealthCheckV1(signal);
+  const queryKey =  queryOptions?.queryKey ?? getAppControllerHealthCheckV1QueryKey();
 
-  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
-    Awaited<ReturnType<typeof appControllerHealthCheckV1>>,
-    TError,
-    TData
-  > & { queryKey: DataTag<QueryKey, TData, TError> };
-};
+  
 
-export type AppControllerHealthCheckV1QueryResult = NonNullable<
-  Awaited<ReturnType<typeof appControllerHealthCheckV1>>
->;
-export type AppControllerHealthCheckV1QueryError = unknown;
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof appControllerHealthCheckV1>>> = ({ signal }) => appControllerHealthCheckV1(signal);
 
-export function useAppControllerHealthCheckV1<
-  TData = Awaited<ReturnType<typeof appControllerHealthCheckV1>>,
-  TError = unknown,
->(
-  options: {
-    query: Partial<
-      UseQueryOptions<
-        Awaited<ReturnType<typeof appControllerHealthCheckV1>>,
-        TError,
-        TData
-      >
-    > &
-      Pick<
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof appControllerHealthCheckV1>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+}
+
+export type AppControllerHealthCheckV1QueryResult = NonNullable<Awaited<ReturnType<typeof appControllerHealthCheckV1>>>
+export type AppControllerHealthCheckV1QueryError = unknown
+
+
+export function useAppControllerHealthCheckV1<TData = Awaited<ReturnType<typeof appControllerHealthCheckV1>>, TError = unknown>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof appControllerHealthCheckV1>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof appControllerHealthCheckV1>>,
           TError,
           Awaited<ReturnType<typeof appControllerHealthCheckV1>>
-        >,
-        'initialData'
-      >;
-  },
-  queryClient?: QueryClient,
-): DefinedUseQueryResult<TData, TError> & {
-  queryKey: DataTag<QueryKey, TData, TError>;
-};
-export function useAppControllerHealthCheckV1<
-  TData = Awaited<ReturnType<typeof appControllerHealthCheckV1>>,
-  TError = unknown,
->(
-  options?: {
-    query?: Partial<
-      UseQueryOptions<
-        Awaited<ReturnType<typeof appControllerHealthCheckV1>>,
-        TError,
-        TData
-      >
-    > &
-      Pick<
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useAppControllerHealthCheckV1<TData = Awaited<ReturnType<typeof appControllerHealthCheckV1>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof appControllerHealthCheckV1>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof appControllerHealthCheckV1>>,
           TError,
           Awaited<ReturnType<typeof appControllerHealthCheckV1>>
-        >,
-        'initialData'
-      >;
-  },
-  queryClient?: QueryClient,
-): UseQueryResult<TData, TError> & {
-  queryKey: DataTag<QueryKey, TData, TError>;
-};
-export function useAppControllerHealthCheckV1<
-  TData = Awaited<ReturnType<typeof appControllerHealthCheckV1>>,
-  TError = unknown,
->(
-  options?: {
-    query?: Partial<
-      UseQueryOptions<
-        Awaited<ReturnType<typeof appControllerHealthCheckV1>>,
-        TError,
-        TData
-      >
-    >;
-  },
-  queryClient?: QueryClient,
-): UseQueryResult<TData, TError> & {
-  queryKey: DataTag<QueryKey, TData, TError>;
-};
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useAppControllerHealthCheckV1<TData = Awaited<ReturnType<typeof appControllerHealthCheckV1>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof appControllerHealthCheckV1>>, TError, TData>>, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 
-export function useAppControllerHealthCheckV1<
-  TData = Awaited<ReturnType<typeof appControllerHealthCheckV1>>,
-  TError = unknown,
->(
-  options?: {
-    query?: Partial<
-      UseQueryOptions<
-        Awaited<ReturnType<typeof appControllerHealthCheckV1>>,
-        TError,
-        TData
-      >
-    >;
-  },
-  queryClient?: QueryClient,
-): UseQueryResult<TData, TError> & {
-  queryKey: DataTag<QueryKey, TData, TError>;
-} {
-  const queryOptions = getAppControllerHealthCheckV1QueryOptions(options);
+export function useAppControllerHealthCheckV1<TData = Awaited<ReturnType<typeof appControllerHealthCheckV1>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof appControllerHealthCheckV1>>, TError, TData>>, }
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const query = useQuery(queryOptions, queryClient) as UseQueryResult<
-    TData,
-    TError
-  > & { queryKey: DataTag<QueryKey, TData, TError> };
+  const queryOptions = getAppControllerHealthCheckV1QueryOptions(options)
 
-  query.queryKey = queryOptions.queryKey;
+  const query = useQuery(queryOptions , queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
+
+  query.queryKey = queryOptions.queryKey ;
 
   return query;
 }
 
-/**
- * @summary Register a new user
- */
-export const authControllerSignUpV1 = (
-  signUpDto: SignUpDto,
-  signal?: AbortSignal,
-) => {
-  return customInstance<SignInResponseDto>({
-    url: `/api/v1/auth/signup`,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    data: signUpDto,
-    signal,
-  });
-};
 
-export const getAuthControllerSignUpV1MutationOptions = <
-  TError = unknown,
-  TContext = unknown,
->(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof authControllerSignUpV1>>,
-    TError,
-    { data: SignUpDto },
-    TContext
-  >;
-}): UseMutationOptions<
-  Awaited<ReturnType<typeof authControllerSignUpV1>>,
-  TError,
-  { data: SignUpDto },
-  TContext
-> => {
-  const mutationKey = ['authControllerSignUpV1'];
-  const { mutation: mutationOptions } = options
-    ? options.mutation &&
-      'mutationKey' in options.mutation &&
-      options.mutation.mutationKey
-      ? options
-      : { ...options, mutation: { ...options.mutation, mutationKey } }
-    : { mutation: { mutationKey } };
 
-  const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof authControllerSignUpV1>>,
-    { data: SignUpDto }
-  > = (props) => {
-    const { data } = props ?? {};
-
-    return authControllerSignUpV1(data);
-  };
-
-  return { mutationFn, ...mutationOptions };
-};
-
-export type AuthControllerSignUpV1MutationResult = NonNullable<
-  Awaited<ReturnType<typeof authControllerSignUpV1>>
->;
-export type AuthControllerSignUpV1MutationBody = SignUpDto;
-export type AuthControllerSignUpV1MutationError = unknown;
-
-/**
- * @summary Register a new user
- */
-export const useAuthControllerSignUpV1 = <TError = unknown, TContext = unknown>(
-  options?: {
-    mutation?: UseMutationOptions<
-      Awaited<ReturnType<typeof authControllerSignUpV1>>,
-      TError,
-      { data: SignUpDto },
-      TContext
-    >;
-  },
-  queryClient?: QueryClient,
-): UseMutationResult<
-  Awaited<ReturnType<typeof authControllerSignUpV1>>,
-  TError,
-  { data: SignUpDto },
-  TContext
-> => {
-  const mutationOptions = getAuthControllerSignUpV1MutationOptions(options);
-
-  return useMutation(mutationOptions, queryClient);
-};
-
-/**
- * @summary Log in a user
- */
-export const authControllerSignInV1 = (
-  signInDto: SignInDto,
-  signal?: AbortSignal,
-) => {
-  return customInstance<SignInResponseDto>({
-    url: `/api/v1/auth/signin`,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    data: signInDto,
-    signal,
-  });
-};
-
-export const getAuthControllerSignInV1MutationOptions = <
-  TError = unknown,
-  TContext = unknown,
->(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof authControllerSignInV1>>,
-    TError,
-    { data: SignInDto },
-    TContext
-  >;
-}): UseMutationOptions<
-  Awaited<ReturnType<typeof authControllerSignInV1>>,
-  TError,
-  { data: SignInDto },
-  TContext
-> => {
-  const mutationKey = ['authControllerSignInV1'];
-  const { mutation: mutationOptions } = options
-    ? options.mutation &&
-      'mutationKey' in options.mutation &&
-      options.mutation.mutationKey
-      ? options
-      : { ...options, mutation: { ...options.mutation, mutationKey } }
-    : { mutation: { mutationKey } };
-
-  const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof authControllerSignInV1>>,
-    { data: SignInDto }
-  > = (props) => {
-    const { data } = props ?? {};
-
-    return authControllerSignInV1(data);
-  };
-
-  return { mutationFn, ...mutationOptions };
-};
-
-export type AuthControllerSignInV1MutationResult = NonNullable<
-  Awaited<ReturnType<typeof authControllerSignInV1>>
->;
-export type AuthControllerSignInV1MutationBody = SignInDto;
-export type AuthControllerSignInV1MutationError = unknown;
-
-/**
- * @summary Log in a user
- */
-export const useAuthControllerSignInV1 = <TError = unknown, TContext = unknown>(
-  options?: {
-    mutation?: UseMutationOptions<
-      Awaited<ReturnType<typeof authControllerSignInV1>>,
-      TError,
-      { data: SignInDto },
-      TContext
-    >;
-  },
-  queryClient?: QueryClient,
-): UseMutationResult<
-  Awaited<ReturnType<typeof authControllerSignInV1>>,
-  TError,
-  { data: SignInDto },
-  TContext
-> => {
-  const mutationOptions = getAuthControllerSignInV1MutationOptions(options);
-
-  return useMutation(mutationOptions, queryClient);
-};
 
 /**
  * @summary Refresh access token
  */
-export const authControllerRefreshV1 = (
-  refreshTokenDto: RefreshTokenDto,
-  signal?: AbortSignal,
+export const authControllerV1 = (
+    
+ signal?: AbortSignal
 ) => {
-  return customInstance<RefreshTokenResponseDto>({
-    url: `/api/v1/auth/refresh`,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    data: refreshTokenDto,
-    signal,
-  });
-};
+      
+      
+      return customInstance<RefreshTokenResponseDto>(
+      {url: `/api/v1/auth/refresh`, method: 'POST', signal
+    },
+      );
+    }
+  
 
-export const getAuthControllerRefreshV1MutationOptions = <
-  TError = void,
-  TContext = unknown,
->(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof authControllerRefreshV1>>,
-    TError,
-    { data: RefreshTokenDto },
-    TContext
-  >;
-}): UseMutationOptions<
-  Awaited<ReturnType<typeof authControllerRefreshV1>>,
-  TError,
-  { data: RefreshTokenDto },
-  TContext
-> => {
-  const mutationKey = ['authControllerRefreshV1'];
-  const { mutation: mutationOptions } = options
-    ? options.mutation &&
-      'mutationKey' in options.mutation &&
-      options.mutation.mutationKey
-      ? options
-      : { ...options, mutation: { ...options.mutation, mutationKey } }
-    : { mutation: { mutationKey } };
 
-  const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof authControllerRefreshV1>>,
-    { data: RefreshTokenDto }
-  > = (props) => {
-    const { data } = props ?? {};
+export const getAuthControllerV1MutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof authControllerV1>>, TError,void, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof authControllerV1>>, TError,void, TContext> => {
 
-    return authControllerRefreshV1(data);
-  };
+const mutationKey = ['authControllerV1'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
 
-  return { mutationFn, ...mutationOptions };
-};
+      
 
-export type AuthControllerRefreshV1MutationResult = NonNullable<
-  Awaited<ReturnType<typeof authControllerRefreshV1>>
->;
-export type AuthControllerRefreshV1MutationBody = RefreshTokenDto;
-export type AuthControllerRefreshV1MutationError = void;
 
-/**
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof authControllerV1>>, void> = () => {
+          
+
+          return  authControllerV1()
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type AuthControllerV1MutationResult = NonNullable<Awaited<ReturnType<typeof authControllerV1>>>
+    
+    export type AuthControllerV1MutationError = void
+
+    /**
  * @summary Refresh access token
  */
-export const useAuthControllerRefreshV1 = <TError = void, TContext = unknown>(
-  options?: {
-    mutation?: UseMutationOptions<
-      Awaited<ReturnType<typeof authControllerRefreshV1>>,
-      TError,
-      { data: RefreshTokenDto },
-      TContext
-    >;
-  },
-  queryClient?: QueryClient,
-): UseMutationResult<
-  Awaited<ReturnType<typeof authControllerRefreshV1>>,
-  TError,
-  { data: RefreshTokenDto },
-  TContext
-> => {
-  const mutationOptions = getAuthControllerRefreshV1MutationOptions(options);
+export const useAuthControllerV1 = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof authControllerV1>>, TError,void, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof authControllerV1>>,
+        TError,
+        void,
+        TContext
+      > => {
 
-  return useMutation(mutationOptions, queryClient);
-};
+      const mutationOptions = getAuthControllerV1MutationOptions(options);
 
+      return useMutation(mutationOptions , queryClient);
+    }
+    
 /**
  * @summary Get current user profile
  */
-export const authControllerMeV1 = (signal?: AbortSignal) => {
-  return customInstance<User>({
-    url: `/api/v1/auth/me`,
-    method: 'GET',
-    signal,
-  });
-};
+export const authControllerMeV1 = (
+    
+ signal?: AbortSignal
+) => {
+      
+      
+      return customInstance<User>(
+      {url: `/api/v1/auth/me`, method: 'GET', signal
+    },
+      );
+    }
+  
 
 export const getAuthControllerMeV1QueryKey = () => {
-  return [`/api/v1/auth/me`] as const;
-};
+    return [`/api/v1/auth/me`] as const;
+    }
 
-export const getAuthControllerMeV1QueryOptions = <
-  TData = Awaited<ReturnType<typeof authControllerMeV1>>,
-  TError = unknown,
->(options?: {
-  query?: Partial<
-    UseQueryOptions<
-      Awaited<ReturnType<typeof authControllerMeV1>>,
-      TError,
-      TData
-    >
-  >;
-}) => {
-  const { query: queryOptions } = options ?? {};
+    
+export const getAuthControllerMeV1QueryOptions = <TData = Awaited<ReturnType<typeof authControllerMeV1>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof authControllerMeV1>>, TError, TData>>, }
+) => {
 
-  const queryKey = queryOptions?.queryKey ?? getAuthControllerMeV1QueryKey();
+const {query: queryOptions} = options ?? {};
 
-  const queryFn: QueryFunction<
-    Awaited<ReturnType<typeof authControllerMeV1>>
-  > = ({ signal }) => authControllerMeV1(signal);
+  const queryKey =  queryOptions?.queryKey ?? getAuthControllerMeV1QueryKey();
 
-  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
-    Awaited<ReturnType<typeof authControllerMeV1>>,
-    TError,
-    TData
-  > & { queryKey: DataTag<QueryKey, TData, TError> };
-};
+  
 
-export type AuthControllerMeV1QueryResult = NonNullable<
-  Awaited<ReturnType<typeof authControllerMeV1>>
->;
-export type AuthControllerMeV1QueryError = unknown;
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof authControllerMeV1>>> = ({ signal }) => authControllerMeV1(signal);
 
-export function useAuthControllerMeV1<
-  TData = Awaited<ReturnType<typeof authControllerMeV1>>,
-  TError = unknown,
->(
-  options: {
-    query: Partial<
-      UseQueryOptions<
-        Awaited<ReturnType<typeof authControllerMeV1>>,
-        TError,
-        TData
-      >
-    > &
-      Pick<
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof authControllerMeV1>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+}
+
+export type AuthControllerMeV1QueryResult = NonNullable<Awaited<ReturnType<typeof authControllerMeV1>>>
+export type AuthControllerMeV1QueryError = unknown
+
+
+export function useAuthControllerMeV1<TData = Awaited<ReturnType<typeof authControllerMeV1>>, TError = unknown>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof authControllerMeV1>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof authControllerMeV1>>,
           TError,
           Awaited<ReturnType<typeof authControllerMeV1>>
-        >,
-        'initialData'
-      >;
-  },
-  queryClient?: QueryClient,
-): DefinedUseQueryResult<TData, TError> & {
-  queryKey: DataTag<QueryKey, TData, TError>;
-};
-export function useAuthControllerMeV1<
-  TData = Awaited<ReturnType<typeof authControllerMeV1>>,
-  TError = unknown,
->(
-  options?: {
-    query?: Partial<
-      UseQueryOptions<
-        Awaited<ReturnType<typeof authControllerMeV1>>,
-        TError,
-        TData
-      >
-    > &
-      Pick<
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useAuthControllerMeV1<TData = Awaited<ReturnType<typeof authControllerMeV1>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof authControllerMeV1>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof authControllerMeV1>>,
           TError,
           Awaited<ReturnType<typeof authControllerMeV1>>
-        >,
-        'initialData'
-      >;
-  },
-  queryClient?: QueryClient,
-): UseQueryResult<TData, TError> & {
-  queryKey: DataTag<QueryKey, TData, TError>;
-};
-export function useAuthControllerMeV1<
-  TData = Awaited<ReturnType<typeof authControllerMeV1>>,
-  TError = unknown,
->(
-  options?: {
-    query?: Partial<
-      UseQueryOptions<
-        Awaited<ReturnType<typeof authControllerMeV1>>,
-        TError,
-        TData
-      >
-    >;
-  },
-  queryClient?: QueryClient,
-): UseQueryResult<TData, TError> & {
-  queryKey: DataTag<QueryKey, TData, TError>;
-};
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useAuthControllerMeV1<TData = Awaited<ReturnType<typeof authControllerMeV1>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof authControllerMeV1>>, TError, TData>>, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary Get current user profile
  */
 
-export function useAuthControllerMeV1<
-  TData = Awaited<ReturnType<typeof authControllerMeV1>>,
-  TError = unknown,
->(
-  options?: {
-    query?: Partial<
-      UseQueryOptions<
-        Awaited<ReturnType<typeof authControllerMeV1>>,
-        TError,
-        TData
-      >
-    >;
-  },
-  queryClient?: QueryClient,
-): UseQueryResult<TData, TError> & {
-  queryKey: DataTag<QueryKey, TData, TError>;
-} {
-  const queryOptions = getAuthControllerMeV1QueryOptions(options);
+export function useAuthControllerMeV1<TData = Awaited<ReturnType<typeof authControllerMeV1>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof authControllerMeV1>>, TError, TData>>, }
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const query = useQuery(queryOptions, queryClient) as UseQueryResult<
-    TData,
-    TError
-  > & { queryKey: DataTag<QueryKey, TData, TError> };
+  const queryOptions = getAuthControllerMeV1QueryOptions(options)
 
-  query.queryKey = queryOptions.queryKey;
+  const query = useQuery(queryOptions , queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
+
+  query.queryKey = queryOptions.queryKey ;
 
   return query;
 }
