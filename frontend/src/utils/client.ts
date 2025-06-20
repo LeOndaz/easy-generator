@@ -10,7 +10,7 @@ type RequestConfig = {
 };
 
 // Use environment variable for API base URL, fallback to full URL for production
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = 'http://localhost:3000';
 
 /**
  * The structured error payload from the backend.
@@ -41,15 +41,15 @@ async function handleResponse(response: Response) {
     const responseData = await response.json();
     error.data = responseData;
   } catch (e) {
-    // invalid 
+    // invalid
   }
   throw error;
 }
 
 export const customInstance = async <T>(config: RequestConfig): Promise<T> => {
-  const token = localStorage.getItem("accessToken");
+  const token = localStorage.getItem('accessToken');
   const headers: Record<string, string> = {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
     ...(token && { Authorization: `Bearer ${token}` }),
     ...config.headers,
   };

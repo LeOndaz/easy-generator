@@ -42,4 +42,4 @@ export const handleApiError = (error: ApiError) => {
     message: errorTitle,
     description: errorMessage,
   });
-}; 
+};

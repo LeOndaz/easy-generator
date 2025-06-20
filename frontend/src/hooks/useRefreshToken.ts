@@ -1,7 +1,14 @@
-import { useAuthControllerRefreshV1, type RefreshTokenResponseDto, type RefreshTokenDto } from '../api/api';
+import {
+  useAuthControllerRefreshV1,
+  type RefreshTokenResponseDto,
+  type RefreshTokenDto,
+} from '../api/api';
 import { type UseMutationOptions } from '@tanstack/react-query';
 
-type Options = Omit<UseMutationOptions<RefreshTokenResponseDto, Error, { data: RefreshTokenDto }>, 'mutationFn'>;
+type Options = Omit<
+  UseMutationOptions<RefreshTokenResponseDto, Error, { data: RefreshTokenDto }>,
+  'mutationFn'
+>;
 
 export const useRefreshToken = (options?: Options) => {
   return useAuthControllerRefreshV1({
@@ -15,7 +22,7 @@ export const useRefreshToken = (options?: Options) => {
       },
       onError: (error, ...rest) => {
         options?.onError?.(error, ...rest);
-      }
+      },
     },
   });
-}; 
+};

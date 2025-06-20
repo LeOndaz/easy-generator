@@ -1,11 +1,18 @@
 import { useContext } from 'react';
-import { useAuthControllerSignUpV1, type SignInResponseDto, type SignUpDto } from '../api/api';
+import {
+  useAuthControllerSignUpV1,
+  type SignInResponseDto,
+  type SignUpDto,
+} from '../api/api';
 import { UserContext } from '../contexts/UserContext';
 import { type UseMutationOptions } from '@tanstack/react-query';
 import { type ApiError } from '../utils/client';
 import { handleApiError } from '../utils/errorHandler';
 
-type Options = Omit<UseMutationOptions<SignInResponseDto, Error, { data: SignUpDto }>, 'mutationFn'>;
+type Options = Omit<
+  UseMutationOptions<SignInResponseDto, Error, { data: SignUpDto }>,
+  'mutationFn'
+>;
 
 export const useSignUp = (options?: Options) => {
   const { setUser } = useContext(UserContext);
@@ -27,4 +34,4 @@ export const useSignUp = (options?: Options) => {
       },
     },
   });
-}; 
+};

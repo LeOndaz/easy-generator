@@ -8,7 +8,7 @@ import { SignUpDto } from './dto/signup.dto';
 import { SignInDto } from './dto/signin.dto';
 import * as argon2 from 'argon2';
 import { SignInResponseDto } from './dto/sign-in-response.dto';
-import { User, UserDocument } from '../users/schemas/user.schema';
+import { UserDocument } from '../users/schemas/user.schema';
 import { ConfigService } from '@nestjs/config';
 import { InvalidCredentialsError, EmailAlreadyExistsError } from './errors';
 
